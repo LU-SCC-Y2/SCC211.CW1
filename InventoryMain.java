@@ -8,23 +8,13 @@ public class InventoryMain {
         ArrayList <Thread> addThreads = new ArrayList <Thread>();
         ArrayList <Thread> removeThreads = new ArrayList <Thread>();
 
-        
+
         for (int i = 0; i < numAddOperations; i++) {
-            addThreads.add(new Thread(new Runnable(){
-                @Override
-                public void run(){
-                    wareHouse.add();
-                }
-            }));
+            addThreads.add(new Thread(new runnable(wareHouse, "add")));
             addThreads.get(i).start();
         }
         for (int i = 0; i < numRemoveOperations; i++) {
-            removeThreads.add(new Thread(new Runnable(){
-                @Override
-                public void run(){
-                    wareHouse.remove();
-                }
-            }));
+            removeThreads.add(new Thread(new runnable(wareHouse, "remove")));
             removeThreads.get(i).start();
         }
 
